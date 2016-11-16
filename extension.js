@@ -33,6 +33,7 @@ const hotkeys = Extension.imports.hotkeys;
 
 // Globals
 const SETTINGS_GRID_SIZE = 'grid-size';
+const SETTINGS_GRID_SIZE_DEFAULT_IDX = 'grid-size-default';
 const SETTINGS_AUTO_CLOSE = 'auto-close';
 const SETTINGS_ANIMATION = 'animation';
 const SETTINGS_IGNORE_PANEL = 'ignore-panel';
@@ -118,6 +119,7 @@ function initSettings() {
     ];
 
     //You can change those settings to set whatever you want by default
+    gridSettings[SETTINGS_GRID_SIZE_DEFAULT_IDX] = 0;
     gridSettings[SETTINGS_AUTO_CLOSE] = true;
     gridSettings[SETTINGS_ANIMATION] = true;
     gridSettings[SETTINGS_IGNORE_PANEL] = false; //Set this to true if you have the top panel hidden
@@ -149,8 +151,8 @@ function enable() {
     initSettings();
 
     // initialize these from settings, the first set of sizes
-    nbCols = gridSettings[SETTINGS_GRID_SIZE][0].cols;
-    nbRows = gridSettings[SETTINGS_GRID_SIZE][0].rows;
+    nbCols = gridSettings[SETTINGS_GRID_SIZE][gridSettings[SETTINGS_GRID_SIZE_DEFAULT_IDX]].cols;
+    nbRows = gridSettings[SETTINGS_GRID_SIZE][gridSettings[SETTINGS_GRID_SIZE_DEFAULT_IDX]].rows;
 
     global.log("Init Grids");
     initGrids();
